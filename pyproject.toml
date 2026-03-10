@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "langmemory"
+version = "0.1.1"
+description = "Memory that behaves like a system, not a log."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["llm", "memory", "ai", "runtime", "tiered", "recall", "dsa", "merkle", "bloom-filter", "skip-list"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+transformers = ["sentence-transformers>=2.0"]
+mmh3 = ["mmh3>=4.0"]  # faster hashing for bloom filter
+langchain = ["langchain>=0.1"]
+all = [
+    "openai>=1.0",
+    "sentence-transformers>=2.0",
+    "mmh3>=4.0",
+    "langchain>=0.1",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["langmemory*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
